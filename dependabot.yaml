@@ -1,6 +1,6 @@
-# Configuration pour Go
+# Configuration du Go
 ---
-version: 2 #la version de la configuration YAML utilisée ici est la version 2
+version: 2 #la version de la configuration YAML utilisée est la version 2
 updates:
   - package-ecosystem: "gomod" #configurer les mises à jour pour les dépendances Go
     directory: "/" #permet de mettre à jour les dépendances directes de type "minor" (les dépendances mineures).
@@ -10,11 +10,11 @@ updates:
       - dependency-type: "direct"
         update-type: "semver:minor" #la mise à jour des dépendances directes de type "minor" est autorisée
 
-# Configuration pour Docker
+# Configuration du Docker
 ---
 version: 2
 updates:
-  - package-ecosystem: "docker"
+  - package-ecosystem: "docker" #la mise à jour de conteneurs Docker
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "daily" #la mise à jour doit se produire quotidiennement

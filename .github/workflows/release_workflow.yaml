@@ -19,14 +19,14 @@ jobs:
      security-events: write
      statuses: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 #pour récupérer le code
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v4 # la configuration de Go
         with:
           go-version: stable
       - name: Build and Release
-        uses: goreleaser/goreleaser-action@v4
-        if: success() && startsWith(github.ref, 'refs/tags/')
+        uses: goreleaser/goreleaser-action@v4 # la création d'une release
+        if: success() && startsWith(github.ref, 'refs/tags/') #vérifier si le push est sur une tag et si le build a été un succès avant de lancer le job de build et de release
         with:
           version: latest
           args: release --clean
@@ -44,9 +44,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build And Publish Image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v4 #la publication d'une image Docker sur Docker Hub
         with:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/super_calculator:${{  github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/super_calculator:${{  github.ref_name }} #pour récupérer les infos d'identification Docker Hub et GitHub
+          

@@ -2,19 +2,19 @@ name: Dependabot
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Exécuter tous les jours à minuit
+    - cron: '0 0 * * *' # le workflow sera exécuté tous les jours à minuit
 
 jobs:
   dependabot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #s'exécute sur la dernière version d'Ubuntu
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Setup Go
+      - name: Checkout code  #récupération du code source
+        uses: actions/checkout@v3 
+      - name: Setup Go   #la configuration de Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.17
-      - name: Dependabot
+          go-version: 1.17 #installer la version 1.17 de Go
+      - name: Dependabot   #exécution de la mise à jour des dépendances en utilisant le token GitHub secret 
         uses: dependabot/dependabot-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

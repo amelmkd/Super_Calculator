@@ -3,22 +3,22 @@ name: Test Workflow
 on:
   push:
 
-jobs:
+jobs: #exécuter le test sur différentes versions de Go (1.17, 1.18 et 1.19)
   test:
     strategy:
-      matrix:
+      matrix: #utiliser une stratégie de matrice 
         go-version: [1.17, 1.18, 1.19]
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout code #la récupération du code source 
       uses: actions/checkout@v3
 
-    - name: Set up Go ${{ matrix.go-version }}
+    - name: Set up Go ${{ matrix.go-version }} #la configuration de Go 
       uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
 
-    - name: Run tests
+    - name: Run tests # exécution des tests avec la commande go test
       run: go test ./...
