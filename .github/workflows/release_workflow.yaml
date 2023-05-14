@@ -26,7 +26,7 @@ jobs:
           go-version: stable
       - name: Build and Release
         uses: goreleaser/goreleaser-action@v4 # la création d'une release
-        if: success() && startsWith(github.ref, 'refs/tags/') #vérifier si le push est sur une tag et si le build a été succès avant de lancer le job de build et de release
+        if: success() && startsWith(github.ref, 'refs/tags/') #vérifier si le push est sur tag et si le build a été succès avant de lancer le job de build et de release
         with:
           version: latest
           args: release --clean
